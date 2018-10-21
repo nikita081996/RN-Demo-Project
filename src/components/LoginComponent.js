@@ -6,10 +6,14 @@ import {
   Keyboard,
   AsyncStorage,
   ToastAndroid,
+  ScrollView,
   KeyboardAvoidingView
 } from 'react-native';
 import { Input, CheckBox, Button, Icon } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
+import { Header } from 'react-navigation';
+
+// import AndroidKeyboardAdjust from 'react-native-android-keyboard-adjust';
 // import { SecureStorage } from "nativescript-secure-storage";
 
 class LoginComponent extends Component {
@@ -19,7 +23,8 @@ class LoginComponent extends Component {
     this.state = {
       username: '',
       password: '',
-      remember: false
+      remember: false,
+      behavior: 'position'
     };
   }
 
@@ -52,6 +57,24 @@ class LoginComponent extends Component {
       .done();
     // console.log(this.state.remember + '');
   }
+
+  // setKeyboardSetting(setting) {
+  //   switch (setting) {
+  //     case 'nothing':
+  //       AndroidKeyboardAdjust.setAdjustNothing();
+  //       break;
+  //     case 'pan':
+  //       AndroidKeyboardAdjust.setAdjustPan();
+  //       break;
+  //     case 'resize':
+  //       AndroidKeyboardAdjust.setAdjustResize();
+  //       break;
+  //     case 'unspecified':
+  //       AndroidKeyboardAdjust.setAdjustUnspecified();
+  //       break;
+  //     default:
+  //   }
+  // }
 
   handleLogin() {
     //var secureStorage = new SecureStorage();
@@ -152,8 +175,12 @@ class LoginComponent extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <KeyboardAvoidingView behavior={this.state.behavior}>
+      <ScrollView>
+        <KeyboardAvoidingView
+          style={styles.container}
+          behavior="padding"
+          keyboardVerticalOffset={Header.HEIGHT + 0}
+        >
           <Input
             placeholder="Username"
             leftIcon={{ type: 'font-awesome', name: 'user-o' }}
@@ -186,7 +213,7 @@ class LoginComponent extends Component {
             />
           </View>
         </KeyboardAvoidingView>
-      </View>
+      </ScrollView>
     );
   }
 }
