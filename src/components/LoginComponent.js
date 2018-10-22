@@ -19,7 +19,6 @@ import { Header } from 'react-navigation';
 class LoginComponent extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       username: '',
       password: '',
@@ -29,16 +28,7 @@ class LoginComponent extends Component {
   }
 
   componentDidMount() {
-    // var secureStorage = new SecureStorage();
-
-    // var username = secureStorage.getSync({
-    //   key: "username"
-    // });
-    // var value = secureStorage.getSync({
-    //   key: "password"
-    // }); password
-    // this.setState({ username, password });
-
+    // fetch mobile storage data and set to the state
     AsyncStorage.getItem('username')
       .then(value => {
         this.setState({ username: value });
@@ -55,29 +45,9 @@ class LoginComponent extends Component {
         this.setState({ remember: JSON.parse(value) });
       })
       .done();
-    // console.log(this.state.remember + '');
   }
 
-  // setKeyboardSetting(setting) {
-  //   switch (setting) {
-  //     case 'nothing':
-  //       AndroidKeyboardAdjust.setAdjustNothing();
-  //       break;
-  //     case 'pan':
-  //       AndroidKeyboardAdjust.setAdjustPan();
-  //       break;
-  //     case 'resize':
-  //       AndroidKeyboardAdjust.setAdjustResize();
-  //       break;
-  //     case 'unspecified':
-  //       AndroidKeyboardAdjust.setAdjustUnspecified();
-  //       break;
-  //     default:
-  //   }
-  // }
-
   handleLogin() {
-    //var secureStorage = new SecureStorage();
     Keyboard.dismiss();
     if (this.state.username === '' && this.state.password === '') {
       Alert.alert(
@@ -138,23 +108,7 @@ class LoginComponent extends Component {
         AsyncStorage.setItem('password', this.state.password);
         AsyncStorage.setItem('remember', JSON.stringify(this.state.remember));
         console.log(`${this.state.remember}`);
-
-        //console.log(this.state.remember);
-        // const success = secureStorage.setSync({
-        //   key: "username",
-        //   value: this.state.username
-        // },
-        //   {
-        //     key: "password",
-        //     value: this.state.password
-        //   });
       } else {
-        // var success = secureStorage.removeSync({
-        //   key: "username"
-        // });
-        // var success = secureStorage.removeSync({
-        //   key: "password"
-        // });
         this.removeItemValue('username');
         this.removeItemValue('password');
         this.removeItemValue('remember');
@@ -190,6 +144,7 @@ class LoginComponent extends Component {
           />
           <Input
             placeholder="Password"
+            secureTextEntry
             leftIcon={{ type: 'font-awesome', name: 'key' }}
             onChangeText={password => this.setState({ password })}
             value={this.state.password}

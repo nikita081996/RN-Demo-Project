@@ -3,37 +3,56 @@ import { Text, View, BackHandler, TouchableOpacity, FlatList } from 'react-nativ
 import { connect } from 'react-redux';
 import { Card } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
+import { NavigationActions } from 'react-navigation';
 import { fetchUser } from '../redux/Action/ActionCreators';
 import { Loading } from './LoadingComponent';
 
 class HomeComponent extends Component {
+  // ...
+
   componentWillMount() {
+    //console.log('componentwillmount');
+
     this.fetchUser();
+    // this.props.navigation.dispatch(
+    //   NavigationActions.reset({
+    //     index: 0,
+    //     actions: [NavigationActions.navigate({ routeName: 'HomeComponent' })]
+    //   })
+    // );
   }
-  //   componentDidMount() {
-  //     BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
-  //     // var SecureStorage = require("nativescript-secure-storage").SecureStorage;
-  //   }
+  // componentDidMount() {
+  //   BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
+  //   // var SecureStorage = require("nativescript-secure-storage").SecureStorage;
+  // }
 
-  //   componentWillReceiveProps(nextProps) {
-  //     //  console.log(nextProps.user);
-  //   }
+  // componentWillReceiveProps(nextProps) {
+  //   //  console.log(nextProps.user);
+  // }
 
-  //   componentWillUnmount() {
-  //     BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
-  //   }
+  // componentWillUnmount() {
+  //   BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
+  // }
 
-  //   onButtonPress = () => {
-  //     BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
-  //     // then navigate
-  //     //navigate('NewScreen');
-  //   };
+  // componentDidUpdate() {
+  //   console.log('componentDidUpdate');
+  // }
+  // onButtonPress = () => {
+  //   BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
+  //   // then navigate
+  //   //navigate('NewScreen');
+  // };
 
-  //   handleBackButton = () => {
-  //     BackHandler.exitApp();
-  //   };
+  // handleBackButton = () => {
+  //   //  const currentRouteName = this.context.router.getCurrentPathname();
+  //   console.log(this.props);
+  //   BackHandler.exitApp();
+  // };
 
   fetchUser() {
+    /**
+     * call the ActionCreators fetchUser function
+     * */
     this.props.fetchUser();
   }
 
@@ -103,12 +122,17 @@ const styles = {
   }
 };
 
+/**
+ * map state to props
+ *
+ */
 const mapStateToProps = state => {
   const { isLoading, errMess, user } = state.user;
   console.log(state.user.user);
   return { isLoading, errMess, user };
 };
 
+// connect to the actioncreators
 export default connect(
   mapStateToProps,
   { fetchUser }

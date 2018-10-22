@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
   }
 });
 
+// Loading component to show loading indicator
 export const Loading = () => (
   <View style={styles.loadingView}>
     <ActivityIndicator size="large" color="#512DA8" />

@@ -9,7 +9,7 @@ const RouterComponent = () => (
   <Router
     navigationBarStyle={styles.navBar}
     titleStyle={styles.navTitle}
-    barButtonIconStyle={{ tintColor: 'whites' }}
+    barButtonIconStyle={{ tintColor: 'white' }}
   >
     <Scene key="root">
       <Scene key="auth">
