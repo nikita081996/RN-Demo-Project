@@ -9,8 +9,10 @@ import {
   ScrollView,
   KeyboardAvoidingView
 } from 'react-native';
-import { Input, CheckBox, Button, Icon } from 'react-native-elements';
+import { Input, CheckBox, Button } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
+import Icon from 'react-native-ionicons';
+
 import { Header } from 'react-navigation';
 
 // import AndroidKeyboardAdjust from 'react-native-android-keyboard-adjust';
@@ -161,7 +163,7 @@ class LoginComponent extends Component {
             <Button
               onPress={() => this.handleLogin()}
               title="Login"
-              icon={<Icon name="sign-in" type="font-awesome" size={24} color="white" />}
+              icon={<Icon name="log-in" size={24} color="white" />}
               buttonStyle={{
                 backgroundColor: '#512DA8'
               }}

@@ -75,20 +75,29 @@ class HomeComponent extends Component {
 
   renderUserCard(item) {
     //  console.log(item);
+    const string = item.name;
+    const arr = string.split(' ');
+    const letter1 = arr[0].charAt(0).toUpperCase();
+    const letter2 = arr[1].charAt(0).toUpperCase();
+    const letter = `${letter1}${letter2}`;
     return (
       <TouchableOpacity onPress={() => Actions.userDetailsComponent({ item })}>
         <Card
-          overlayStyle={{ opacity: 0 }}
           key={item.id}
-          style={styles.restaurantCard}
+          containerStyle={styles.cardWithIcon}
 
           // image={{ uri: item.restaurant.featured_image }}
         >
-          <View>
-            <Text style={{ fontSize: 20 }}>{item.name}</Text>
-            <Text style={styles.textStyles}>
-              {item.address.street}, {item.address.city}
-            </Text>
+          <View style={styles.mystyle}>
+            <View style={styles.roundIcon}>
+              <View style={styles.iconText}>
+                <Text style={{ color: '#000000', fontWeight: 'bold' }}>{letter}</Text>
+              </View>
+            </View>
+            <View style={{ paddingLeft: 10 }}>
+              <Text style={{ fontSize: 20, fontWeight: 'bold' }}>{item.name}</Text>
+              <Text style={{ fontSize: 18 }}>@{item.username}</Text>
+            </View>
           </View>
         </Card>
         {/* //   <Text>hrello</Text> */}
@@ -109,16 +118,41 @@ class HomeComponent extends Component {
 
 const styles = {
   mainContainerStyles: {
-    marginTop: 50
+    marginTop: 50,
+    backgroundColor: '#BEF1D4'
   },
   textStyles: {
     fontSize: 18,
     color: 'blue'
   },
-  restaurantCard: {
+  cardWithIcon: {
     flex: 1,
+    backgroundColor: '#61F9A9',
     flexDirection: 'row',
-    marginBottom: 30
+    justifyContent: 'flex-start',
+    borderRadius: 8,
+    elevation: 5
+
+    // alignItems: 'flex-start'
+  },
+  mystyle: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start'
+  },
+  restaurantCard: {
+    color: '#0CD765'
+  },
+  roundIcon: {
+    width: 50,
+    height: 50,
+    padding: 10,
+    borderRadius: 50,
+    backgroundColor: '#ffffff'
+  },
+  iconText: {
+    justifyContent: 'space-around',
+    alignItems: 'center'
   }
 };
 

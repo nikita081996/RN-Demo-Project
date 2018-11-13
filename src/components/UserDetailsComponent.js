@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
+import { Button } from 'react-native-elements';
+import Icon from 'react-native-ionicons';
+import { Actions } from 'react-native-router-flux';
 
 class UserDetailsComponent extends Component {
   render() {
@@ -26,6 +29,35 @@ class UserDetailsComponent extends Component {
           <Text style={styles.textHeaderStyles}>Company Name: </Text>
           <Text style={styles.textStyles}>{this.props.item.company.name}</Text>
         </View>
+        <View style={styles.formButton}>
+          <Button
+            onPress={() => Actions.commentsComponent()}
+            title="Comments"
+            icon={<Icon name="chatboxes" size={24} color="white" />}
+            buttonStyle={{
+              backgroundColor: '#512DA8'
+            }}
+          />
+        </View>
+        <View style={styles.formButton}>
+          <Button
+            onPress={() => Actions.photosComponent()}
+            title="Images"
+            icon={<Icon name="images" size={24} color="white" />}
+            buttonStyle={{
+              backgroundColor: '#512DA8'
+            }}
+          />
+        </View>
+        <View style={styles.formButton}>
+          <Button
+            onPress={() => Actions.todosComponent()}
+            title="Todos"
+            buttonStyle={{
+              backgroundColor: '#512DA8'
+            }}
+          />
+        </View>
       </View>
     );
   }
@@ -50,6 +82,11 @@ const styles = {
     color: 'black',
     justifyContent: 'flex-start',
     flex: 1
+  },
+  formButton: {
+    marginTop: 60,
+    marginLeft: 60,
+    marginRight: 60
   }
 };
 
