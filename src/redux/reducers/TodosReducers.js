@@ -6,6 +6,7 @@ const INITIAL_STATE = {
   todo: []
 };
 
+// todos reducers
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case ActionTypes.TODO_DETAILS_ADD:

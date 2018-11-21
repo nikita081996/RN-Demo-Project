@@ -6,6 +6,7 @@ const INITIAL_STATE = {
   photo: []
 };
 
+// photos reducers
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case ActionTypes.PHOTO_DETAILS_ADD:

@@ -5,7 +5,7 @@ const INITIAL_STATE = {
   errMess: null,
   user: []
 };
-
+// User Details Reducers
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case ActionTypes.USER_DETAILS_ADD:

@@ -88,7 +88,7 @@ class HomeComponent extends Component {
 
           // image={{ uri: item.restaurant.featured_image }}
         >
-          <View style={styles.mystyle}>
+          <View style={styles.iconWIthTextStyle}>
             <View style={styles.roundIcon}>
               <View style={styles.iconText}>
                 <Text style={{ color: '#000000', fontWeight: 'bold' }}>{letter}</Text>
@@ -135,7 +135,7 @@ const styles = {
 
     // alignItems: 'flex-start'
   },
-  mystyle: {
+  iconWIthTextStyle: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'flex-start'

@@ -15,9 +15,6 @@ import Icon from 'react-native-ionicons';
 
 import { Header } from 'react-navigation';
 
-// import AndroidKeyboardAdjust from 'react-native-android-keyboard-adjust';
-// import { SecureStorage } from "nativescript-secure-storage";
-
 class LoginComponent extends Component {
   constructor(props) {
     super(props);
@@ -104,6 +101,7 @@ class LoginComponent extends Component {
         }
       );
     } else {
+      // navigate to the home page
       Actions.firstPage();
       if (this.state.remember) {
         AsyncStorage.setItem('username', this.state.username);
@@ -114,9 +112,9 @@ class LoginComponent extends Component {
         this.removeItemValue('username');
         this.removeItemValue('password');
         this.removeItemValue('remember');
-        ToastAndroid.show(`${this.state.remember}`, ToastAndroid.LONG);
+        //ToastAndroid.show(`${this.state.remember}`, ToastAndroid.LONG);
+        this.setState({ username: '', password: '' });
       }
-      this.setState({ username: '', password: '' });
     }
   }
 

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { View, FlatList, ActivityIndicator, Text } from 'react-native';
 import { Card } from 'react-native-elements';
 import { connect } from 'react-redux';
-import Icon from 'react-native-ionicons';
 import { fetchComment } from '../redux/Action/ActionCreators';
 import { Loading } from './LoadingComponent';
 
@@ -27,21 +26,11 @@ class CommentsComponent extends Component {
 
   render() {
     const RenderData = data => {
-      //  console.log('New Data');
-      // console.log(data);
-
-      //console.log(data);
-      //  const data = this.state.url;
       if (data != null) {
         if (this.props.isLoading) {
           return <Loading />;
         }
-        //  this.setState({ uploading: false });
-        //  console.log('data');
-        // console.log(JSON.stringify(data));
-        // const myObjStr = JSON.parse(data);
-        // console.log(data);
-        // const myObjStr = JSON.parse(data);
+
         return (
           <FlatList
             data={data}
@@ -54,12 +43,7 @@ class CommentsComponent extends Component {
 
     const renderUserCard = ({ item, index }) => (
       <View>
-        <Card
-          key={item.id}
-          containerStyle={styles.cardWithIcon}
-
-          // image={{ uri: item.restaurant.featured_image }}
-        >
+        <Card key={item.id} containerStyle={styles.cardWithIcon}>
           <View style={styles.cardElementStyle}>
             <Text style={{ fontSize: 20, fontWeight: 'bold' }}>{item.email}</Text>
             <Text style={{ fontSize: 18 }}>{item.body}</Text>
@@ -67,7 +51,6 @@ class CommentsComponent extends Component {
         </Card>
       </View>
     );
-    // console.log(this.props.item.name);
     return <View style={styles.mainContainer}>{RenderData(this.props.comment)}</View>;
   }
 }
@@ -99,6 +82,7 @@ const styles = {
   }
 };
 
+// mapping state data to props
 const mapStateToProps = state => {
   const { isLoading, errMess, comment } = state.comments;
   console.log(state.comments.comment);

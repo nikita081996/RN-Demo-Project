@@ -6,6 +6,7 @@ const INITIAL_STATE = {
   comment: []
 };
 
+// comment reducers
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case ActionTypes.COMMENT_DETAILS_ADD:

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { View, FlatList, ActivityIndicator } from 'react-native';
 import { Tile } from 'react-native-elements';
 import { connect } from 'react-redux';
-import Icon from 'react-native-ionicons';
 import { fetchPhoto } from '../redux/Action/ActionCreators';
 import { Loading } from './LoadingComponent';
 
@@ -53,14 +52,6 @@ class PhotosComponent extends Component {
     };
 
     const renderUserCard = ({ item, index }) => (
-      //  console.log('hello');
-      // console.log(item);
-      //const fff = JSON.parse(item);
-      //  this.setState({ uploading: false });
-      // console.log(fff.name);
-      // this.setState({ uploading: false });
-      // const key = item.key;
-      // console.log(item.key.url);
       <View>
         <Tile
           titleStyle={{ alignItems: 'center' }}
@@ -72,7 +63,6 @@ class PhotosComponent extends Component {
         />
       </View>
     );
-    // console.log(this.props.item.name);
     return <View style={styles.mainContainer}>{RenderData(this.props.photo)}</View>;
   }
 }
@@ -104,6 +94,7 @@ const styles = {
   }
 };
 
+// mapping state data to props
 const mapStateToProps = state => {
   const { isLoading, errMess, photo } = state.photos;
   console.log(state.photos.photo);

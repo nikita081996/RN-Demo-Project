@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { View, FlatList, ActivityIndicator, Text } from 'react-native';
 import { Card } from 'react-native-elements';
 import { connect } from 'react-redux';
-import Icon from 'react-native-ionicons';
 import { fetchTodo } from '../redux/Action/ActionCreators';
 import { Loading } from './LoadingComponent';
 
@@ -43,20 +42,13 @@ class TodosComponent extends Component {
 
     const renderUserCard = ({ item, index }) => (
       <View>
-        <Card
-          key={item.id}
-          containerStyle={styles.cardWithIcon}
-
-          // image={{ uri: item.restaurant.featured_image }}
-        >
+        <Card key={item.id} containerStyle={styles.cardWithIcon}>
           <View style={styles.cardElementStyle}>
             <Text style={{ fontSize: 20, fontWeight: 'bold' }}>{item.title}</Text>
-            {/* <Text style={{ fontSize: 18 }}>{item.body}</Text> */}
           </View>
         </Card>
       </View>
     );
-    // console.log(this.props.item.name);
     return <View style={styles.mainContainer}>{RenderData(this.props.todo)}</View>;
   }
 }
@@ -88,6 +80,7 @@ const styles = {
   }
 };
 
+// mapping state data to props
 const mapStateToProps = state => {
   const { isLoading, errMess, todo } = state.todos;
   console.log(state.todos.todo);
