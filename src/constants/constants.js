@@ -1,3 +1,7 @@
+export const USER_FETCH_URL = 'https://jsonplaceholder.typicode.com/users';
+export const PHOTO_FETCH_URL = 'https://jsonplaceholder.typicode.com/photos';
+export const COMMENT_FETCH_URL = 'https://jsonplaceholder.typicode.com/comments';
+export const TODO_FETCH_URL = 'https://jsonplaceholder.typicode.com/todos';
 export const USER_DETAILS_LOADING = 'USER_DETAILS_LOADING';
 export const USER_DETAILS_ADD = 'USER_DETAILS_ADD';
 export const USER_DETAILS_LOADING_FAILED = 'USER_DETAILS_LOADING_FAILED';

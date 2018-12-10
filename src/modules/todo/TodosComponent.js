@@ -1,28 +1,14 @@
 import React, { Component } from 'react';
-import { View, FlatList, ActivityIndicator, Text } from 'react-native';
+import { View, FlatList, Text } from 'react-native';
 import { Card } from 'react-native-elements';
 import { connect } from 'react-redux';
-import { fetchTodo } from '../redux/Action/ActionCreators';
-import { Loading } from './LoadingComponent';
+import { fetchTodo } from './TodoActionCreators';
+import { Loading } from '../../common/LoadingComponent';
 
 class TodosComponent extends Component {
   componentWillMount() {
     this.props.fetchTodo();
   }
-  maybeRenderUploadingOverlay = () => {
-    if (this.props.isLoading) {
-      return (
-        <View
-          style={{
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}
-        >
-          <ActivityIndicator color="#000" animating size="large" />
-        </View>
-      );
-    }
-  };
 
   render() {
     const RenderData = data => {
@@ -53,6 +39,19 @@ class TodosComponent extends Component {
   }
 }
 
+// mapping state data to props
+const mapStateToProps = state => {
+  const { isLoading, errMess, todo } = state.todos;
+  console.log(state.todos.todo);
+  return { isLoading, errMess, todo };
+};
+
+// connect to the actioncreators
+export default connect(
+  mapStateToProps,
+  { fetchTodo }
+)(TodosComponent);
+
 const styles = {
   mainContainer: {
     paddingTop: 60
@@ -79,16 +78,3 @@ const styles = {
     flexDirection: 'column'
   }
 };
-
-// mapping state data to props
-const mapStateToProps = state => {
-  const { isLoading, errMess, todo } = state.todos;
-  console.log(state.todos.todo);
-  return { isLoading, errMess, todo };
-};
-
-// connect to the actioncreators
-export default connect(
-  mapStateToProps,
-  { fetchTodo }
-)(TodosComponent);

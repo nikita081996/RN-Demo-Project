@@ -2,18 +2,15 @@ import React, { Component } from 'react';
 import {
   View,
   StyleSheet,
-  Alert,
   Keyboard,
   AsyncStorage,
-  ToastAndroid,
   ScrollView,
   KeyboardAvoidingView
 } from 'react-native';
 import { Input, CheckBox, Button } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-ionicons';
-
-import { Header } from 'react-navigation';
+import AlertDialog from '../../common/AlertComponent';
 
 class LoginComponent extends Component {
   constructor(props) {
@@ -22,7 +19,9 @@ class LoginComponent extends Component {
       username: '',
       password: '',
       remember: false,
-      behavior: 'position'
+      alert: false,
+      alertTitle: 'Error',
+      alertMsg: 'something went wrong !'
     };
   }
 
@@ -46,60 +45,45 @@ class LoginComponent extends Component {
       .done();
   }
 
+  showAlert() {
+    if (this.state.alert) {
+      return (
+        <AlertDialog
+          alertTitle={this.state.alertTitle}
+          alertMsg={this.state.alertMsg}
+          onPressOk={() => this.setState({ alert: false })}
+        />
+      );
+    }
+    return <View />;
+  }
+
   handleLogin() {
     Keyboard.dismiss();
     if (this.state.username === '' && this.state.password === '') {
-      Alert.alert(
-        'Authentication Failed',
-        'Please Enter Username and Password',
-        [
-          {
-            text: 'OK'
-          }
-        ],
-        {
-          cancelable: false
-        }
-      );
+      this.setState({
+        alertTitle: 'Authentication Failed',
+        alertMsg: 'Please Enter Username and Password'
+      });
+      this.setState({ alert: true });
     } else if (this.state.username === '') {
-      Alert.alert(
-        'Authentication Failed',
-        'Please Enter Username',
-        [
-          {
-            text: 'OK'
-          }
-        ],
-        {
-          cancelable: false
-        }
-      );
+      this.setState({
+        alertTitle: 'Authentication Failed',
+        alertMsg: 'Please Enter Username'
+      });
+      this.setState({ alert: true });
     } else if (this.state.password === '') {
-      Alert.alert(
-        'Authentication Failed',
-        'Please Enter Password',
-        [
-          {
-            text: 'OK'
-          }
-        ],
-        {
-          cancelable: false
-        }
-      );
+      this.setState({
+        alertTitle: 'Authentication Failed',
+        alertMsg: 'Please Enter Password'
+      });
+      this.setState({ alert: true });
     } else if (this.state.username !== 'mindfire' || this.state.password !== 'mindfire') {
-      Alert.alert(
-        'Authentication Failed',
-        'Wrong Username or Password',
-        [
-          {
-            text: 'OK'
-          }
-        ],
-        {
-          cancelable: false
-        }
-      );
+      this.setState({
+        alertTitle: 'Authentication Failed',
+        alertMsg: 'Wrong Username or Password'
+      });
+      this.setState({ alert: true });
     } else {
       // navigate to the home page
       Actions.firstPage();
@@ -130,11 +114,7 @@ class LoginComponent extends Component {
   render() {
     return (
       <ScrollView>
-        <KeyboardAvoidingView
-          style={styles.container}
-          behavior="padding"
-          keyboardVerticalOffset={Header.HEIGHT + 0}
-        >
+        <KeyboardAvoidingView style={styles.container} behavior="padding">
           <Input
             placeholder="Username"
             leftIcon={{ type: 'font-awesome', name: 'user-o' }}
@@ -167,11 +147,14 @@ class LoginComponent extends Component {
               }}
             />
           </View>
+          {this.showAlert()}
         </KeyboardAvoidingView>
       </ScrollView>
     );
   }
 }
+
+export default LoginComponent;
 
 const styles = StyleSheet.create({
   container: {
@@ -200,5 +183,3 @@ const styles = StyleSheet.create({
     margin: 60
   }
 });
-
-export default LoginComponent;

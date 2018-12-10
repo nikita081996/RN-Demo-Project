@@ -1,28 +1,14 @@
 import React, { Component } from 'react';
-import { View, FlatList, ActivityIndicator } from 'react-native';
+import { View, FlatList } from 'react-native';
 import { Tile } from 'react-native-elements';
 import { connect } from 'react-redux';
-import { fetchPhoto } from '../redux/Action/ActionCreators';
-import { Loading } from './LoadingComponent';
+import { fetchPhoto } from './PhotoActionCreators';
+import { Loading } from '../../common/LoadingComponent';
 
 class PhotosComponent extends Component {
   componentWillMount() {
     this.props.fetchPhoto();
   }
-  maybeRenderUploadingOverlay = () => {
-    if (this.props.isLoading) {
-      return (
-        <View
-          style={{
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}
-        >
-          <ActivityIndicator color="#000" animating size="large" />
-        </View>
-      );
-    }
-  };
 
   render() {
     const RenderData = data => {
@@ -67,6 +53,19 @@ class PhotosComponent extends Component {
   }
 }
 
+// mapping state data to props
+const mapStateToProps = state => {
+  const { isLoading, errMess, photo } = state.photos;
+  console.log(state.photos.photo);
+  return { isLoading, errMess, photo };
+};
+
+// connect to the actioncreators
+export default connect(
+  mapStateToProps,
+  { fetchPhoto }
+)(PhotosComponent);
+
 const styles = {
   mainContainer: {
     paddingTop: 60
@@ -93,16 +92,3 @@ const styles = {
     marginRight: 60
   }
 };
-
-// mapping state data to props
-const mapStateToProps = state => {
-  const { isLoading, errMess, photo } = state.photos;
-  console.log(state.photos.photo);
-  return { isLoading, errMess, photo };
-};
-
-// connect to the actioncreators
-export default connect(
-  mapStateToProps,
-  { fetchPhoto }
-)(PhotosComponent);

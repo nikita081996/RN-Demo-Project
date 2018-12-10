@@ -9,16 +9,12 @@
   "dependencies": {
     "react": "16.3.1",
     "react-native": "^0.55.2",
-    "react-native-android-keyboard-adjust": "^1.2.0",
     "react-native-elements": "^1.0.0-beta5",
     "react-native-ionicons": "^4.4.6",
     "react-native-router-flux": "^3.45.0",
     "react-native-vector-icons": "^5.0.0",
-    "react-navigation": "^2.13.0",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
-    "redux-logger": "^3.0.6",
-    "redux-persist": "^5.10.0",
     "redux-thunk": "^2.2.0"
   },
   "devDependencies": {

@@ -1,58 +1,19 @@
 import React, { Component } from 'react';
-import { Text, View, BackHandler, TouchableOpacity, FlatList } from 'react-native';
+import { Text, View, TouchableOpacity, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { Card } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
-import { NavigationActions } from 'react-navigation';
-import { fetchUser } from '../redux/Action/ActionCreators';
-import { Loading } from './LoadingComponent';
+import { fetchUser } from './UserActionCreators';
+import { Loading } from '../../common/LoadingComponent';
 
-class HomeComponent extends Component {
-  // ...
-
+class UserComponent extends Component {
   componentWillMount() {
-    //console.log('componentwillmount');
-
     this.fetchUser();
-    // this.props.navigation.dispatch(
-    //   NavigationActions.reset({
-    //     index: 0,
-    //     actions: [NavigationActions.navigate({ routeName: 'HomeComponent' })]
-    //   })
-    // );
   }
-  // componentDidMount() {
-  //   BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
-  //   // var SecureStorage = require("nativescript-secure-storage").SecureStorage;
-  // }
-
-  // componentWillReceiveProps(nextProps) {
-  //   //  console.log(nextProps.user);
-  // }
-
-  // componentWillUnmount() {
-  //   BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
-  // }
-
-  // componentDidUpdate() {
-  //   console.log('componentDidUpdate');
-  // }
-  // onButtonPress = () => {
-  //   BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
-  //   // then navigate
-  //   //navigate('NewScreen');
-  // };
-
-  // handleBackButton = () => {
-  //   //  const currentRouteName = this.context.router.getCurrentPathname();
-  //   console.log(this.props);
-  //   BackHandler.exitApp();
-  // };
-
+  /**
+   * call the ActionCreators fetchUser function
+   * */
   fetchUser() {
-    /**
-     * call the ActionCreators fetchUser function
-     * */
     this.props.fetchUser();
   }
 
@@ -82,12 +43,7 @@ class HomeComponent extends Component {
     const letter = `${letter1}${letter2}`;
     return (
       <TouchableOpacity onPress={() => Actions.userDetailsComponent({ item })}>
-        <Card
-          key={item.id}
-          containerStyle={styles.cardWithIcon}
-
-          // image={{ uri: item.restaurant.featured_image }}
-        >
+        <Card key={item.id} containerStyle={styles.cardWithIcon}>
           <View style={styles.iconWIthTextStyle}>
             <View style={styles.roundIcon}>
               <View style={styles.iconText}>
@@ -100,26 +56,35 @@ class HomeComponent extends Component {
             </View>
           </View>
         </Card>
-        {/* //   <Text>hrello</Text> */}
       </TouchableOpacity>
     );
   }
 
   render() {
-    // this.props.user.map(user => console.log(user.name));
-    return (
-      <View style={styles.mainContainerStyles}>
-        {/* <Text style={styles.textStyles}>Splash Form</Text> */}
-        {this.RenderUser(this.props.user)}
-      </View>
-    );
+    return <View style={styles.mainContainerStyles}>{this.RenderUser(this.props.user)}</View>;
   }
 }
+
+/**
+ * map state to props
+ *
+ */
+const mapStateToProps = state => {
+  const { isLoading, errMess, user } = state.user;
+  console.log(state.user.user);
+  return { isLoading, errMess, user };
+};
+
+// connect to the actioncreators
+export default connect(
+  mapStateToProps,
+  { fetchUser }
+)(UserComponent);
 
 const styles = {
   mainContainerStyles: {
     marginTop: 50,
-    backgroundColor: '#BEF1D4'
+    backgroundColor: '#ffffff'
   },
   textStyles: {
     fontSize: 18,
@@ -155,19 +120,3 @@ const styles = {
     alignItems: 'center'
   }
 };
-
-/**
- * map state to props
- *
- */
-const mapStateToProps = state => {
-  const { isLoading, errMess, user } = state.user;
-  console.log(state.user.user);
-  return { isLoading, errMess, user };
-};
-
-// connect to the actioncreators
-export default connect(
-  mapStateToProps,
-  { fetchUser }
-)(HomeComponent);

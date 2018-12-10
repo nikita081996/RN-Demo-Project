@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, ScrollView } from 'react-native';
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-ionicons';
 import { Actions } from 'react-native-router-flux';
@@ -8,7 +8,7 @@ class UserDetailsComponent extends Component {
   render() {
     console.log(this.props.item.name);
     return (
-      <View style={styles.mainContainer}>
+      <ScrollView style={styles.mainContainer}>
         <View style={styles.textViewStyle}>
           <Text style={styles.textHeaderStyles}>User Name: </Text>
           <Text style={styles.textStyles}>{this.props.item.username}</Text>
@@ -58,10 +58,11 @@ class UserDetailsComponent extends Component {
             }}
           />
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }
+export default UserDetailsComponent;
 
 const styles = {
   mainContainer: {
@@ -89,5 +90,3 @@ const styles = {
     marginRight: 60
   }
 };
-
-export default UserDetailsComponent;

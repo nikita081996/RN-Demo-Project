@@ -1,12 +1,12 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Scene, Router } from 'react-native-router-flux';
-import LoginComponent from './src/components/LoginComponent';
-import HomeComponent from './src/components/HomeComponent';
-import UserDetailsComponent from './src/components/UserDetailsComponent';
-import CommentsComponent from './src/components/CommentsComponent';
-import TodosComponent from './src/components/TodosComponent';
-import PhotosComponent from './src/components/PhotosComponent';
+import LoginComponent from './src/modules/login/LoginComponent';
+import UserComponent from './src/modules/user/UserComponent';
+import UserDetailsComponent from './src/modules/user/UserDetailsComponent';
+import CommentsComponent from './src/modules/comments/CommentsComponent';
+import TodosComponent from './src/modules/todo/TodosComponent';
+import PhotosComponent from './src/modules/photos/PhotosComponent';
 
 const RouterComponent = () => (
   <Router
@@ -19,7 +19,7 @@ const RouterComponent = () => (
         <Scene key="loginComponent" component={LoginComponent} title="Login" />
       </Scene>
       <Scene key="firstPage">
-        <Scene key="homeComponent" component={HomeComponent} title="Home" initial />
+        <Scene key="homeComponent" component={UserComponent} title="Home" initial />
         <Scene key="userDetailsComponent" component={UserDetailsComponent} title="User Details" />
         <Scene key="commentsComponent" component={CommentsComponent} title="Comments" />
         <Scene key="todosComponent" component={TodosComponent} title="Todos" />
