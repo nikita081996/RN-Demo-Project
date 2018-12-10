@@ -23,16 +23,20 @@ export const fetchTodo = () => dispatch => {
     .then(todo => dispatch(addTodos(todo)))
     .catch(error => dispatch(todosFetchingFailed(error)));
 };
+
+// todo data fetching failed
 export const todosFetchingFailed = errorMessage => ({
   type: ActionTypes.TODO_DETAILS_LOADING_FAILED,
   payload: errorMessage
 });
 
+// after todo data fetching done
 export const addTodos = todo => ({
   type: ActionTypes.TODO_DETAILS_ADD,
   payload: todo
 });
 
+// while loading todo data
 export const todosLoading = () => ({
   type: ActionTypes.TODO_DETAILS_LOADING,
   payload: null

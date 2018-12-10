@@ -6,6 +6,7 @@ import { fetchComment } from './CommentsActionCreators';
 import { Loading } from '../../common/LoadingComponent';
 
 class CommentsComponent extends Component {
+  // fetch comment data
   componentWillMount() {
     this.props.fetchComment();
   }
@@ -13,6 +14,7 @@ class CommentsComponent extends Component {
   render() {
     const RenderData = data => {
       if (data != null) {
+        // if data is loading
         if (this.props.isLoading) {
           return (
             <View style={{ justifyContent: 'center', alignItems: 'center' }}>
@@ -20,7 +22,7 @@ class CommentsComponent extends Component {
             </View>
           );
         }
-
+        // show list of comment data
         return (
           <FlatList
             data={data}

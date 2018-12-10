@@ -23,16 +23,20 @@ export const fetchPhoto = () => dispatch => {
     .then(photo => dispatch(addPhoto(photo)))
     .catch(error => dispatch(photoFetchingFailed(error)));
 };
+
+// photo fetching failed
 export const photoFetchingFailed = errorMessage => ({
   type: ActionTypes.PHOTO_DETAILS_LOADING_FAILED,
   payload: errorMessage
 });
 
+// photo fetching done
 export const addPhoto = photo => ({
   type: ActionTypes.PHOTO_DETAILS_ADD,
   payload: photo
 });
 
+// photo loading
 export const photoLoading = () => ({
   type: ActionTypes.PHOTO_DETAILS_LOADING,
   payload: null

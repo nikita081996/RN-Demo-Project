@@ -7,15 +7,18 @@ import { Loading } from '../../common/LoadingComponent';
 
 class TodosComponent extends Component {
   componentWillMount() {
+    // fetch todo data
     this.props.fetchTodo();
   }
 
   render() {
     const RenderData = data => {
       if (data != null) {
+        // while data fetching
         if (this.props.isLoading) {
           return <Loading />;
         }
+        // after fetching data is done
         return (
           <FlatList
             data={data}

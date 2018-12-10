@@ -4,6 +4,7 @@ import CommentsReducers from '../modules/comments/CommentsReducers';
 import PhotosReducers from '../modules/photos/PhotosReducers';
 import TodosReducers from '../modules/todo/TodosReducers';
 
+// Combine all reducers
 export default combineReducers({
   user: UserDetailsReducers,
   comments: CommentsReducers,

@@ -12,21 +12,12 @@ class PhotosComponent extends Component {
 
   render() {
     const RenderData = data => {
-      //  console.log('New Data');
-      // console.log(data);
-
-      //console.log(data);
-      //  const data = this.state.url;
       if (data != null) {
+        // while data loading
         if (this.props.isLoading) {
           return <Loading />;
         }
-        //  this.setState({ uploading: false });
-        //  console.log('data');
-        // console.log(JSON.stringify(data));
-        // const myObjStr = JSON.parse(data);
-        // console.log(data);
-        // const myObjStr = JSON.parse(data);
+        // data loading done
         return (
           <FlatList
             data={data}
@@ -41,7 +32,6 @@ class PhotosComponent extends Component {
       <View>
         <Tile
           titleStyle={{ alignItems: 'center' }}
-          //key={item}
           containerStyle={{ flex: 1, marginRight: 10 }}
           imageSrc={{ uri: item.url }}
           title={item.title}

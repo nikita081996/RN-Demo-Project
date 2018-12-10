@@ -12,6 +12,7 @@ import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-ionicons';
 import AlertDialog from '../../common/AlertComponent';
 
+// Login page
 class LoginComponent extends Component {
   constructor(props) {
     super(props);
@@ -45,6 +46,7 @@ class LoginComponent extends Component {
       .done();
   }
 
+  // show Alert
   showAlert() {
     if (this.state.alert) {
       return (
@@ -58,6 +60,7 @@ class LoginComponent extends Component {
     return <View />;
   }
 
+  // check all the condition for login user, username and paasword will be 'mindfire'
   handleLogin() {
     Keyboard.dismiss();
     if (this.state.username === '' && this.state.password === '') {
@@ -102,6 +105,7 @@ class LoginComponent extends Component {
     }
   }
 
+  // delete data from mobile storage
   async removeItemValue(key) {
     try {
       await AsyncStorage.removeItem(key);
@@ -158,8 +162,7 @@ export default LoginComponent;
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'center',
-    margin: 60
+    paddingTop: 60
   },
   imageContainer: {
     flex: 1,
@@ -180,6 +183,8 @@ const styles = StyleSheet.create({
     backgroundColor: null
   },
   formButton: {
-    margin: 60
+    margin: 60,
+    marginLeft: 60,
+    marginRight: 60
   }
 });
